@@ -53,7 +53,11 @@ def turn_count(board)
 end
 
 def current_player(board)
-  turn_count(board) % 2 == 0 ? "X" : "O"
+  if turn_count(board) % 2 == 0
+     "X"
+  else
+     "O"
+  end
 end
 
 def won?(board)
@@ -73,7 +77,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || draw?(board) || full?(board)
+  won?(board) || full?(board) || draw?(board)
 end
 
 def winner(board)
