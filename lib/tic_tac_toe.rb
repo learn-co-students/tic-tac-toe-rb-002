@@ -52,9 +52,6 @@ def turn(board)
   display_board(board)
 end
 
- ##if !valid_move?(board, input)
-##    turn(board)
-
 def play(board)
   while over?(board) == false
     turn(board)
