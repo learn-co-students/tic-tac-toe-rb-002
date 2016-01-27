@@ -1,3 +1,14 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+puts "Welcome to Tic Tac Toe!"
+
+#define the initial board array where each index value is a blank spot (i.e., a blank board)
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+#call the #display_board method from the library
+display_board(board)
+
+#call the #play method to get the game going
+play(board)
