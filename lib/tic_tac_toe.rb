@@ -13,6 +13,8 @@ WIN_COMBINATIONS = [
 
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
+class TicTacToe
+end
 # Helper Methods
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -103,5 +105,4 @@ def play(board)
     puts "Cats Game!"
   end
 end
-
 
