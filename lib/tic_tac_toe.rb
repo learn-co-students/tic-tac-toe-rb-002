@@ -5,27 +5,16 @@ WIN_COMBINATIONS = [
   [0,3,6],
   [1,4,7],
   [2,5,8],
-  [2,4,6],
+  [6,4,2],
   [0,4,8]
  ]
 
 def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} "
-  puts "-----------"
-  puts " #{board[3]} | #{board[4]} | #{board[5]} "
-  puts "-----------"
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
-end
-
-
-def move(board, position, char="X")
-   position = position.to_i - 1
-  board[position] = char
-  if (turn_count(board).even?)
-    board[position] = "O"
-  else
-    board[position] = "X"
-  end
+  print " #{board[0]} | #{board[1]} | #{board[2]} \n"
+  print "-----------\n"
+  print " #{board[3]} | #{board[4]} | #{board[5]} \n"
+  print "-----------\n"
+  print " #{board[6]} | #{board[7]} | #{board[8]} \n"
 end
 
 def position_taken?(board, position)
@@ -49,22 +38,26 @@ def valid_move?(board, position)
 end
 
 
+def move(board, position, char = "X")
+   position = position.to_i - 1
+   board[position] = char
+end
+
 def turn(board)
-    puts "Please enter 1-9:"
+    print "Please enter 1-9:"
     position = gets.strip
   if valid_move?(board, position)
-    move(board, position)
+    char = current_player(board)
+    move(board, position,char)
     display_board(board)
   else
     turn(board)
-
   end
 end
 
-
 def turn_count(board)
-  count = 0
-  board.each do |turn|
+   count = 0
+   board.each do |turn|
       if ((turn == "X") || (turn == "O"))
          count += 1
       end
@@ -73,10 +66,10 @@ def turn_count(board)
 end
 
 def current_player(board)
-  if (turn_count(board).even?)
-    return "X"
-  else
+  if (turn_count(board).odd?)
     return "O"
+  else
+    return "X"
   end
 end
 
@@ -89,7 +82,7 @@ def won?(board)
   [0,3,6],
   [1,4,7],
   [2,5,8],
-  [2,4,6],
+  [6,4,2],
   [0,4,8]
   ]
     count = 0
@@ -148,20 +141,18 @@ def winner(board)
   else
       return nil
   end
-
 end
 
 def play(board)
-
-until over?(board)
-    turn(board)
+  until over?(board)
+      turn(board)
   end
    if won?(board)
-     if winner(board) == "X"
-       puts "Congratulations X!"
-     else
-       puts "Congratulations O!"
-     end
+       if winner(board) == "O"
+         puts "Congratulations O!"
+       else winner(board) == "X"
+         puts "Congratulations X!"
+       end
    elsif draw?(board)
      puts "Cats Game!"
    end
