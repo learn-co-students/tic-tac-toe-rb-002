@@ -26,7 +26,7 @@ def position_taken?(board, position)
 end
 
 def valid_move?(board, position)
-  return false if position.to_i.to_s != position
+  return false if position.to_i.to_s != position.to_s
   !(position_taken?(board, position.to_i-1))
 end
 
@@ -37,6 +37,7 @@ def turn(board)
     puts 
   end until position && position > 0 && position <10
   move(board, position, current_player(board)) if valid_move?(board, position)
+  # require 'pry'c;binding.pry
 end
 
 def turn_count(board)
