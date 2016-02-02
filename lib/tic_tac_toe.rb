@@ -31,14 +31,12 @@ def valid_move?(board, position)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  if valid_move?(board, input)
-    move(board, input, "X")
-  else
-    turn(board)
-  end
-  display_board(board)
+  begin
+    print "\nPlayer #{current_player(board)}, please enter position 1-9: "
+    position = gets.chomp.to_i
+    puts 
+  end until position && position > 0 && position <10
+  move(board, position, current_player(board)) if valid_move?(board, position)
 end
 
 def turn_count(board)
@@ -78,11 +76,10 @@ end
 def play(board)
  while !(over?(board))
    display_board(board)
-   puts
-   puts "Player #{current_player(board)}: Please enter the position:"
-    position = gets.chomp.to_i 
-    move(board, position, current_player(board)) if position > 0 and position <10
+   turn(board)
   end
+  display_board(board)
+  puts
   puts won?(board) ? "Congratulations #{winner(board)}!" : "Cats Game!"
   # puts "Congratulations #{winner(board)}!" if won?(board)
 end
