@@ -1,17 +1,26 @@
-def play(board)
-
+def play(board, names)
   #input = gets.strip
   until over?(board) do
     turn(board)
   end
 
   if won?(board)
-    puts "Congratulations #{winner(board)}!"
+    winnername = winner(board) == "X" ? names[0] : names[1]
+    puts "Congratulations #{winnername}!"
   elsif draw?(board)
    puts "Cats Game!"
   else
    false
   end
+end
+
+def players()
+  players = []
+  puts "Name of player 1:"
+  players << gets.strip
+  puts "Name of player 2:"
+  players << gets.strip
+  return players
 end
 
 # Helper Methods
